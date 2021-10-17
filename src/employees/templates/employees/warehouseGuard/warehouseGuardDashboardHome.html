@@ -1,0 +1,77 @@
+{% extends 'warehouseGuardDashboard.html' %}
+{% load static %}
+{% block title %}
+   Main
+{% endblock title %}
+
+{% block style %}
+  <style>
+   .statistics{
+      text-align: center;
+      border: solid #eee 2px;
+      background-color: #858585;
+    }
+  </style>   
+{% endblock style %}
+  
+{% block content %}
+<main class="ms-sm-auto">
+  <h1 class="h2">Warehouse Guard dashboard</h1>
+   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-4 statistics">
+            <p class="h4">ingredients quantity</p>
+            <p class="h3">{{ingredients_quantity.quantity__sum}}</p>
+          </div>
+          <div class="col-4 statistics">
+            <p class="h4">ingredients price</p>
+            <p class="h3">{{ingredients_price.price__sum}} $</p>
+          </div>
+
+          <div class="col-4 statistics">
+            <p class="h4">Pending invoices</p>
+            <p class="h3">{{Pending_invoices}} </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-4 statistics">
+            <p class="h4">To Accepting invoices</p>
+            <p class="h3">{{ToAccepting_invoices}}</p>
+          </div>
+          <div class="col-4 statistics">
+            <p class="h4">Accepted invoices</p>
+            <p class="h3">{{Accepted_invoices}} </p>
+          </div>
+
+          <div class="col-4 statistics">
+            <p class="h4">InProgress invoices</p>
+            <p class="h3">{{InProgress_invoices}} </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-4 statistics">
+            <p class="h4">Delivered invoices</p>
+            <p class="h3">{{Delivered_invoices}}</p>
+          </div>
+          <div class="col-4 statistics">
+            <p class="h4">Canceled invoices</p>
+            <p class="h3">{{Canceled_invoices}} </p>
+          </div>
+
+          <div class="col-4 statistics">
+            <p class="h4">suppliers count</p>
+            <p class="h3">{{suppliers_count}} </p>
+          </div>
+        </div>
+
+      </div>
+  </div>
+ </main>
+{% endblock content %}
+
+{% block script %}
+
+{% endblock script %}

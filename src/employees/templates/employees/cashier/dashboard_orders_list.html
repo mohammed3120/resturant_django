@@ -1,0 +1,36 @@
+<table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">Status</th>
+        <th scope="col">Order date</th>
+        <th scope="col">Price</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% url 'employees:cashierDashboardOrders' 'Ordered' as path_of_cashierDashboardOrderedOrders %}
+      {% url 'employees:cashierDashboardOrders' 'Preparing' as path_of_cashierDashboardPreparingOrders %}
+      {% for order in orders  %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{order.customer.first_name}}</td>
+        <td>{{order.customer.last_name}}</td>
+        <td>{{order.status}}</td>
+        <td>{{order.order_date}}</td>
+        <td>{{order.get_total_price}} $</td>
+        <td><a class="btn btn-primary" href="{% url 'employees:cashierDashboardOrderDetails' order.id %}">View</a></td>
+        
+        {% if request.path == path_of_cashierDashboardOrderedOrders %}
+        <td><a class="btn btn-secondary" href="{% url 'employees:cashierDashboardSendToKitchen' order.id  %}">Send to Kitchen</a></td>
+        {% elif request.path == path_of_cashierDashboardPreparingOrders %}
+        <td><a class="btn btn-secondary" href="{% url 'employees:cashierDashboardSendToDelivary' order.id  %}">Send to Delivary</a></td>
+        {% endif %}
+          
+        
+      </tr>
+      {% endfor %}      
+    </tbody>
+  </table>

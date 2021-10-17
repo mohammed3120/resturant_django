@@ -1,0 +1,52 @@
+<table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Department</th>
+        <th scope="col">Is admin</th>
+        <th scope="col">added date</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for employee in employees  %}
+      <!-- Delete Modal -->
+      <div class="modal fade" id="deleteEmployee_{{employee.id}}" tabindex="-1" aria-labelledby="deleteEmployee_{{employee.id}}Label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteEmployee_{{employee.id}}Label">Delete Employee</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Are you sure to delete employee {{employee.id}}?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <a class="btn btn-danger" href="{% url 'employees:managerDashboardDeleteEmployee' employee.id %}">Delete</a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{employee.first_name}}</td>
+        <td>{{employee.last_name}}</td>
+        <td>{{employee.phone}}</td>
+        <td>{{employee.department}}</td>
+        <td>{{employee.is_admin}}</td>
+        <td>{{employee.added}}</td>
+        <td><a class="btn btn-info" href="{% url 'employees:managerDashboardEmployeeDetails' employee.id %}">View</a></td>
+        <td><a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteEmployee_{{employee.id}}">Delete</a></td>
+
+
+      </tr>
+      {% endfor %}      
+    </tbody>
+  </table>

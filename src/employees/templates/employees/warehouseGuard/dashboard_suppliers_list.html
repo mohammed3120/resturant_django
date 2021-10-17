@@ -1,0 +1,56 @@
+<table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Itentity number</th>
+        <th scope="col">City</th>
+        <th scope="col">District</th>
+        <th scope="col">Street</th>
+        <th scope="col">Specific address</th>
+        <th scope="col">Adding date</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"><a class="btn btn-outline-primary" href="{% url 'employees:warehouseGuardDashboardAddSupplier' %}">Add supplier</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for supplier in suppliers  %}
+      <!-- Delete Modal -->
+      <div class="modal fade" id="deleteSupplier_{{supplier.id}}" tabindex="-1" aria-labelledby="deleteSupplier_{{supplier.id}}Label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteSupplier_{{supplier.id}}Label">Delete Invoice</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Are you sure to delete Supplier {{supplier.id}}?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <a class="btn btn-danger" href="{% url 'employees:warehouseGuardDashboardDeleteSupplier' supplier.id %}">Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{supplier.first_name}}</td>
+        <td>{{supplier.last_name}}</td>
+        <td>{{supplier.phone}}</td>
+        <td>{{supplier.itentity_number}}</td>
+        <td>{{supplier.city}}</td>
+        <td>{{supplier.district}}</td>
+        <td>{{supplier.street}}</td>
+        <td>{{supplier.specific_address}}</td>
+        <td>{{supplier.added}}</td>
+        <td><a class="btn btn-primary" href="{% url 'employees:warehouseGuardDashboardEditSupplier' supplier.id %}">Edit</a></td>
+        <td><a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteSupplier_{{supplier.id}}">Delete</a></td>
+      </tr>
+      {% endfor %}      
+    </tbody>
+  </table>

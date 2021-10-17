@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+    <style>
+     
+      .container{
+        margin: 0px 200px;
+      }
+      .orders {
+        width: 1200px;
+        /* border: solid #ccc 3px; */
+      }
+      td{
+          border: solid #ccc 3px;
+      }
+      
+    </style>
+    </head>
+    <body>
+        <div class="container">         
+                <table class="orders">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">First name</th>
+                      <th scope="col">Last name</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Order date</th>                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    {% for order in orders  %}
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>{{order.customer.first_name}}</td>
+                      <td>{{order.customer.last_name}}</td>
+                      <td>{{order.status}}</td>
+                      <td>{{order.order_date}}</td>
+                    </tr>
+                    {% endfor %}      
+                  </tbody>
+                </table>
+                
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+      <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+  
+    </body>
+</html>

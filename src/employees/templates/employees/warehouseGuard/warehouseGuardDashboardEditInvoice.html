@@ -1,0 +1,115 @@
+{% extends 'warehouseGuardDashboard.html' %}
+{% load static %}
+{% block title %}
+   Invoices
+{% endblock title %}
+
+{% block style %}
+  <style>
+    .description{
+        width: 100%;
+    }
+    .add_category > img{
+        text-decoration: none;
+        width: 20px;
+        height: 20px;
+    }
+   
+    #add_category_name{
+        width: 100%;
+    }
+    .twantyPercent> input{
+        width: 60%;
+    }
+    .add_item_btn{
+        line-height: 150%;
+        border-radius: 50%;
+        float: right;
+    }
+    #items > .row{
+        margin-bottom: 10px;
+    }
+  </style>
+{% endblock style %}
+{% block content %}
+<div >
+    <!-- Modal -->
+    <div class="modal fade" id="addCategory" tabindex="-1" aria-labelledby="addCategoryLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <form  id="addCategory_form">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCategoryLabel">Add new Category</h5>
+                </div>
+                <div class="modal-body">
+                <input id="add_category_name" type="text">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                </div>
+            </form> 
+        </div>
+        </div>
+    </div>
+    <form method="POST" id="createInvoice" action="{% url 'employees:warehouseGuardDashboardEditInvoice' invoice.id %}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-3">
+                <label >Supplier:</label>
+                <select class="form-select" name='supplier' aria-label="Default select example">
+                    {% for supplier in suppliers %}
+                        <option value="{{supplier.id}}" {% ifequal supplier invoice.supplier %} selected {% endifequal %}>{{supplier}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-9">
+                <label >description:</label>
+                <textarea class="description" name="description">{{invoice.description}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <div id="items">
+            
+            {% for item in items  %}               
+            <div class="row">
+                <div class="col-0 twantyPercent">
+                    <input type="hidden" name='id' required value="{{item.id}}">
+                </div>
+                <div class="col-3 twantyPercent">
+                    <label>Name:</label>
+                    <input type="text" name='item' required value="{{item.name}}">
+                </div>
+                <div class="col-3 twantyPercent">
+                    <label>Category:</label>
+                    <select class='categories'  name='category' aria-label="Default select example">
+                        {% for category in categories %}
+                        
+                            <option value="{{category.id}}" {% ifequal category.name item.category %} selected {% endifequal %}  >{{category.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <span><a class="add_category" data-bs-toggle="modal" data-bs-target="#addCategory"><img src="{% static 'icons/plus.png' %}" alt=""></a></span>
+                    
+                </div>
+                <div class="col-3 twantyPercent">
+                    <label>Quantity:</label>
+                    <input type="number" name='quantity' required value="{{item.quantity}}">
+                </div>
+                <div class="col-3 twantyPercent">
+                    <label>Price:</label>
+                    <input type="number" name="price" required value="{{item.price}}">
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+        <button type="button" class="add_item_btn btn btn-success">+</button> 
+    </form>
+        
+</div>
+{% endblock content %}
+

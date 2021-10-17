@@ -1,0 +1,45 @@
+{% extends 'warehouseGuardDashboard.html' %}
+{% load static %}
+{% block title %}
+   ingredient Details
+{% endblock title %}
+
+{% block style %}
+<style>
+  .details span{
+        margin-right: 100px;
+        font-weight: bold;
+        float: right;
+        background-color: #eee;
+      }
+      .total{
+        font-size: 32px;
+      }
+</style> 
+{% endblock style %}
+
+{% block content %}
+<div class="row">
+   <h1>Ingredient details</h1><hr>
+   <div class="col-3"><b>Name:</b></div>
+   <div class="col-3"><span>{{ingredient.name}}</span></div>
+   <div class="col-3"><b>Price:</b></div> 
+   <div class="col-3"><span>{{ingredient.price}} $</span></div> <hr>
+
+   <div class="col-3"><b>Category:</b></div>
+   <div class="col-3"><span>{{ingredient.category}}</span></div>
+   <div class="col-3"><b>Quantity:</b></div> 
+   <div class="col-3"><span>{{ingredient.quantity}}</span></div><hr>
+</div>
+<div class="row">
+   <div class="col-3"><b>Description:</b></div> 
+   <div class="col-9"><span>{{ingredient.description}}</span></div><hr>
+</div>
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-3"></div>
+    <div class="col-3"></div>
+    <div class="col-3"></div>
+ </div>
+{% endblock content %}

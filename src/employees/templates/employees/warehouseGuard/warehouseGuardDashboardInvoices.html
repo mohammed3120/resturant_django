@@ -1,0 +1,60 @@
+{% extends 'warehouseGuardDashboard.html' %}
+{% load static %}
+{% block title %}
+   Invoices
+{% endblock title %}
+
+{% block style %}
+  <style>
+    .filters{
+      list-style: none;
+    }
+    .prices{
+      color: #000;
+      padding: 10px;
+      margin-bottom: 5px;
+      background-color: #eee;
+    
+    }
+    .prices > input{
+      width: 103%;
+    }
+    .dates > input{
+      width: 108%;
+      color: #000;
+      padding: 10px;
+      margin-bottom: 5px;
+      background-color: #eee;
+    }
+  </style>
+{% endblock style %}
+{% block content %}
+<h1 class="status_search" data-status = "{{invoices.first.status}}">invoices</h1> 
+<div class="table-responsive row">
+    <div class="col-10" id="dashboard_invoices_list">
+      {% include 'employees/warehouseGuard/dashboard_invoices_list.html' %}
+    </div>
+    <div class="col-2">
+      {% if request.path == path_of_warehouseGuardDashboardPendingInvoices %}
+      <a class="btn btn-outline-primary" href="{% url 'employees:warehouseGuardDashboardCreateInvoice' %}">Create invoice</a>
+      {% endif %}
+      <ul class="filters">
+        <li class="dates">
+         Form: <input class="filter_fromDate"  data-filter="date" type="date" />
+        </li>
+        <li class="dates">
+          To: <input class="filter_toDate"  data-filter="date" type="date" />
+         </li>
+      </ul>
+      <ul class='filters'>
+        <li class="prices">
+          Min price: <input class="filter_minPrice"  data-filter="price" type="number" /> 
+        </li>
+        <li class="prices">
+          Max price: <input class="filter_maxPrice"  data-filter="price" type="number" /> 
+        </li>
+      </ul>
+    </div>
+</div>
+{% endblock content %}
+

@@ -1,0 +1,29 @@
+{% extends 'managerDashboard.html' %}
+{% load static %}
+{% block title %}
+   Main
+{% endblock title %}
+
+{% block style %}
+  <style>
+   .statistics{
+      text-align: center;
+      border: solid #eee 2px;
+      background-color: #858585;
+    }
+  </style>   
+{% endblock style %}
+
+{% block content %}
+<main class="ms-sm-auto">
+     <h1 class="h2">Employees</h1>
+     <div class="table-responsive row">
+        <div class="col" id="dashboard_employees_list">
+          {% include 'employees/manager/dashboard_employees_list.html' %}
+        </div>
+     </div>
+ </main>
+{% endblock content %}
+
+{% block script %}
+{% endblock script %}

@@ -1,0 +1,15 @@
+{% extends 'cashierDashboard.html' %}
+{% load static %}
+{% block title %}
+   Orders
+{% endblock title %}
+
+{% block content %}
+<h1>{{orders.first.status}} orders</h1>
+<div class="table-responsive" id="dashboard_orders_list">
+  {% include 'employees/cashier/dashboard_orders_list.html' %}
+  </div>
+{% endblock content %}
+{% block script %}
+
+{% endblock script %}

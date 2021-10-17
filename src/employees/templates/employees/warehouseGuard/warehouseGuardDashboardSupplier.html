@@ -1,0 +1,43 @@
+{% extends 'warehouseGuardDashboard.html' %}
+{% load static %}
+{% block title %}
+   Supplier
+{% endblock title %}
+
+{% block style %}
+  <style>
+      label{
+          width: 150px;
+      }
+      form > input {
+        width: 300px;
+        margin-top: 20px;
+    }
+  </style>
+{% endblock style %}
+{% block content %}
+<div >
+    <form method="POST" id="createInvoice" action="{% url 'employees:warehouseGuardDashboardAddSupplier' %}">
+        {% csrf_token %}
+        <label >First name:</label>
+        {{form.first_name}} <br>
+        <label >Last name:</label>
+        {{form.last_name}}<br>
+        <label >Phone:</label>
+        {{form.phone}}<br>
+        <label >Itentity number:</label>
+        {{form.itentity_number}}<br>
+        <label >City:</label>
+        {{form.city}}<br>
+        <label >District:</label>
+        {{form.district}}<br>
+        <label >Street:</label>
+        {{form.street}}<br>
+        <label >Specific address:</label>
+        {{form.specific_address}}<br><br>  
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+        
+</div>
+{% endblock content %}
+

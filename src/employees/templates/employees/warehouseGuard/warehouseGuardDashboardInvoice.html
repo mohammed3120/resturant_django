@@ -1,0 +1,85 @@
+{% extends 'warehouseGuardDashboard.html' %}
+{% load static %}
+{% block title %}
+   Invoices
+{% endblock title %}
+
+{% block style %}
+  <style>
+    .description{
+        width: 100%;
+    }
+    .add_category > img{
+        text-decoration: none;
+        width: 20px;
+        height: 20px;
+    }
+   
+    #add_category_name{
+        width: 100%;
+    }
+    .twantyPercent> input{
+        width: 60%;
+    }
+    .add_item_btn{
+        line-height: 150%;
+        border-radius: 50%;
+        float: right;
+    }
+    #items > .row{
+        margin-bottom: 10px;
+    }
+  </style>
+{% endblock style %}
+{% block content %}
+<div >
+    <!-- Modal -->
+    <div class="modal fade" id="addCategory" tabindex="-1" aria-labelledby="addCategoryLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <form  id="addCategory_form">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCategoryLabel">Add new Category</h5>
+                </div>
+                <div class="modal-body">
+                <input id="add_category_name" type="text">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                </div>
+            </form> 
+        </div>
+        </div>
+    </div>
+    <form method="POST" id="createInvoice" action="{% url 'employees:warehouseGuardDashboardCreateInvoice' %}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-3">
+                <label >Supplier:</label>
+                <select class="form-select" name='supplier' aria-label="Default select example">
+                    {% for supplier in suppliers %}
+                        <option value="{{supplier.id}}">{{supplier}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-9">
+                <label >description:</label>
+                <textarea class="description" name="description"></textarea>
+            </div>
+        </div>
+        <hr>
+        <div id="items">
+            {% include 'employees\warehouseGuard\warehouseGuardDashboardItem.html' %}
+        </div>
+
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+        <button type="button" class="add_item_btn btn btn-success">+</button> 
+    </form>
+        
+</div>
+{% endblock content %}
+

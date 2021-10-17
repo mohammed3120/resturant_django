@@ -1,0 +1,39 @@
+{% extends 'warehouseGuardDashboard.html' %}
+{% load static %}
+{% block title %}
+   Suppliers
+{% endblock title %}
+
+{% block style %}
+  <style>
+    .filters{
+      list-style: none;
+    }
+    .prices{
+      color: #000;
+      padding: 10px;
+      margin-bottom: 5px;
+      background-color: #eee;
+    
+    }
+    .prices > input{
+      width: 103%;
+    }
+    .dates > input{
+      width: 108%;
+      color: #000;
+      padding: 10px;
+      margin-bottom: 5px;
+      background-color: #eee;
+    }
+  </style>
+{% endblock style %}
+{% block content %}
+<h1>Suppliers</h1> 
+<div class="table-responsive row">
+    <div class="col" id="dashboard_suppliers_list">
+      {% include 'employees/warehouseGuard/dashboard_suppliers_list.html' %}
+    </div>
+</div>
+{% endblock content %}
+

@@ -1,0 +1,79 @@
+{% extends 'warehouseGuardDashboard.html' %}
+{% load static %}
+{% block title %}
+   invoice Details
+{% endblock title %}
+
+{% block style %}
+<style>
+  .details span{
+        margin-right: 100px;
+        font-weight: bold;
+        float: right;
+        background-color: #eee;
+      }
+      .total{
+        font-size: 32px;
+      }
+</style> 
+{% endblock style %}
+
+{% block content %}
+<div class="row">
+   <h1>invoice details</h1><hr>
+   <div class="col-3"><b>First name:</b></div>
+   <div class="col-3"><span>{{invoice.supplier.first_name}}</span></div>
+   <div class="col-3"><b>Last name:</b></div> 
+   <div class="col-3"><span>{{invoice.supplier.last_name}}</span></div> <hr>
+
+   <div class="col-3"><b>Phone number:</b></div>
+   <div class="col-3"><span>{{invoice.supplier.phone}}</span></div>
+   <div class="col-3"><b>itentity card number:</b></div> 
+   <div class="col-3"><span>{{invoice.supplier.itentity_number}}</span></div><hr>
+
+   <div class="col-3"><b>City:</b></div>
+   <div class="col-3"><span>{{invoice.supplier.city}}</span></div>
+   <div class="col-3"><b>District:</b></div> 
+   <div class="col-3"><span>{{invoice.supplier.district}}</span></div><hr>
+
+   <div class="col-3"><b>Street:</b></div>
+   <div class="col-3"><span>{{invoice.supplier.street}}</span></div>
+   <div class="col-3"><b>Specific address:</b></div> 
+   <div class="col-3"><span>{{invoice.supplier.specific_address}}</span></div><hr>
+
+   <div class="col-3"><b>invoice created:</b></div>
+   <div class="col-3"><span>{{invoice.created}}</span></div>
+   <div class="col-3"><b>invoice updated:</b></div> 
+   <div class="col-3"><span>{{invoice.updated}}</span></div><hr>
+</div>
+
+<div class="table-responsive">
+   <table class="table table-striped table-sm">
+     <thead>
+       <tr>
+         <th scope="col"></th>
+         <th scope="col">Item name</th>
+         <th scope="col">category</th>
+         <th scope="col">Quantity</th>
+         <th scope="col">Item price</th>
+       </tr>
+     </thead>
+     <tbody>
+       {% for ingredient in invoice.get_items %}
+       <tr>
+         <td>{{forloop.counter}}</td>
+         <td>{{ingredient.name}}</td>
+         <td>{{ingredient.category}}</td>
+         <td>{{ingredient.quantity}}</td>
+         <td>{{ingredient.price}}</td>
+       </tr>
+       {% endfor %}
+     
+     </tbody>
+     
+   </table>
+   <div class="details">
+    <span class="total">Total Price: {{invoice.get_items_price}} $</span>
+  </div>
+ </div>
+{% endblock content %}

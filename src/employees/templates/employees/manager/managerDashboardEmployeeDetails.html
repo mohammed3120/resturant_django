@@ -1,0 +1,44 @@
+{% extends 'managerDashboard.html' %}
+{% load static %}
+{% block title %}
+   Main
+{% endblock title %}
+
+{% block style %}
+  <style>
+   .employee_img{
+       width:100%;
+   }
+  </style>   
+{% endblock style %}
+
+{% block content %}
+<main class="ms-sm-auto">
+     <h1 class="h2">Employee Details</h1>
+     <div class="container">
+        <div class="row">
+            <div class="col-4 ">
+                <img class="employee_img" src="{{employee.profile_image.url}}" alt="">
+            </div>
+            <div class="col-5">
+              <p class="h4">First name: <b>{{employee.first_name}}</b></p> <br>
+              <p class="h4">Last name: <b>{{employee.last_name}}</b></p> <br>
+              <p class="h4">Department: <b>{{employee.department}}</b></p> <br>
+              <p class="h4">Phone: <b>{{employee.phone}}</b></p> <br>
+              <p class="h4">Itentity number: <b>{{employee.itentity_number}}</b></p> <br>
+              <p class="h4">Specific_address: <b>{{employee.specific_address}}</b></p> <br>
+            </div>
+            <div class="col-3">
+            <p class="h4">Country: <b>{{employee.Country}}</b></p> <br>
+              <p class="h4">City: <b>{{employee.city}}</b></p> <br>
+              <p class="h4">District: <b>{{employee.district}}</b></p> <br>
+              <p class="h4">Street: <b>{{employee.street}}</b></p> <br>
+              <p class="h4">Added date: <b>{{employee.added}}</b></p> <br>
+            </div>
+        </div>
+     </div>
+ </main>
+{% endblock content %}
+
+{% block script %}
+{% endblock script %}

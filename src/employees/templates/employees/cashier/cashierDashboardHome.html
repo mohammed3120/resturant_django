@@ -1,0 +1,55 @@
+{% extends 'cashierDashboard.html' %}
+{% load static %}
+{% block title %}
+   Main
+{% endblock title %}
+
+{% block style %}
+  <style>
+   .statistics{
+      text-align: center;
+      border: solid #eee 2px;
+      background-color: #858585;
+    }
+  </style>   
+{% endblock style %}
+
+{% block content %}
+<main class="ms-sm-auto">
+   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+     <h1 class="h2">Cashier dashboard</h1>
+     <div class="container">
+      <div class="row">
+          <div class="col-6 statistics">
+            <p class="h4">ordered orders</p>
+            <p class="h3">{{ordered_orders}}</p>
+          </div>
+          <div class="col-6 statistics">
+            <p class="h4">preparing orders</p>
+            <p class="h3">{{preparing_orders}} $</p>
+          </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4 statistics">
+          <p class="h4">in progress orders</p>
+          <p class="h3">{{in_progress_orders}}</p>
+        </div>
+        <div class="col-4 statistics">
+          <p class="h4">delivered orders</p>
+          <p class="h3">{{delivered_orders}} $</p>
+        </div>
+
+        <div class="col-4 statistics">
+          <p class="h4">canceled orders</p>
+          <p class="h3">{{canceled_orders}} </p>
+        </div>
+    </div>
+
+     </div>
+   </div>
+ </main>
+{% endblock content %}
+
+{% block script %}
+{% endblock script %}
